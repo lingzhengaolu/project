@@ -4,3 +4,6 @@ shotscreen/
 target/
 test-output/
 *.iml
+.gitignore
+.git/
+.gitignore.swp
