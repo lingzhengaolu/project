@@ -19,7 +19,7 @@ public class PropertiesPublic {
         InputStreamReader isr;
         String value=null;
         try{
-            isr=new InputStreamReader(in,"gbk");//解决中文字符打印乱码
+            isr=new InputStreamReader(in,"gbk");
             BufferedReader br=new BufferedReader(isr);
             properties.load(br);
             value=properties.getProperty(keyName).trim();
