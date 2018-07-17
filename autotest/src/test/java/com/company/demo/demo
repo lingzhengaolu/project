@@ -1,0 +1,5 @@
+控件名称：controlName
+控件唯一识别码：controlCode
+元素识别方式：eleRecMethod
+元素路径：eleRoute
+显式等待时长：timeOut

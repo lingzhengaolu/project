@@ -1,6 +1,6 @@
 package com.company.utils.sql;
 
-import com.company.utils.PropertiesPublic;
+import com.company.utils.pub.PropertiesPublic;
 
 public class SQLConfig {
 	private static PropertiesPublic propertiesPublic=new PropertiesPublic("config.properties");

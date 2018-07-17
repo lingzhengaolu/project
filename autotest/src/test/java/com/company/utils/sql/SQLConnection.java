@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class SQLConnection {
-	public Connection connection=null;
 	public Connection getConnection(String driverclass,String url,String username,String password) {
+		Connection connection=null;
 		try {
 			Class.forName(driverclass);
 		}catch (ClassNotFoundException e){

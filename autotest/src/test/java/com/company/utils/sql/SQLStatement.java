@@ -10,28 +10,25 @@ public class SQLStatement{
 	public SQLStatement(Connection connection){
 		this.connection=connection;
 	}
-	public Statement getStmt(){
+	public void getStmt(){
 		try{
 			stmt=connection.createStatement();
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		return stmt;
 	}
-	public PreparedStatement getPstmt(String sql){
+	public void getPstmt(String sql){
 		try{
 			pstmt=connection.prepareStatement(sql);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		return pstmt;
 	}
-	public CallableStatement getCstmt(String sql){
+	public void getCstmt(String sql){
 		try{
 			cstmt=connection.prepareCall(sql);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		return cstmt;
 	}
 }
