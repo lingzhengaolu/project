@@ -10,7 +10,7 @@ import java.util.HashMap;
 public class ElementDataProcessing {
 	public static HashMap<String,Locator> readElementInfo(Connection connection,String classSimpleName){
 		SQLExecute sqlExecute=new SQLExecute(connection);
-		sqlExecute.executeQueryUtil(1,"select * from"+" "+classSimpleName);
+		sqlExecute.executeQueryUtil(1,"select * from"+" "+"E_"+classSimpleName);
 		ResultSet resultSet=sqlExecute.resultSet;
 		HashMap<String,Locator> elementinfos=new HashMap<String, Locator>();
 		try{
