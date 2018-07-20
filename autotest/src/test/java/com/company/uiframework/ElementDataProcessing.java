@@ -1,6 +1,6 @@
 package com.company.uiframework;
 
-import com.company.utils.sql.SQLExecute;
+import com.company.utils.sql.MysqlResultSetProcessing;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,9 +9,10 @@ import java.util.HashMap;
 
 public class ElementDataProcessing {
 	public static HashMap<String,Locator> readElementInfo(Connection connection,String classSimpleName){
-		SQLExecute sqlExecute=new SQLExecute(connection);
-		sqlExecute.executeQueryUtil(1,"select * from"+" "+"E_"+classSimpleName);
-		ResultSet resultSet=sqlExecute.resultSet;
+		MysqlResultSetProcessing mysqlResultSetProcessing=new MysqlResultSetProcessing(connection);
+		ResultSet resultSet=mysqlResultSetProcessing.getResultSet("select * from"+
+				" "+
+				"E_"+classSimpleName);
 		HashMap<String,Locator> elementinfos=new HashMap<String, Locator>();
 		try{
 			while (resultSet.next()){
@@ -26,17 +27,8 @@ public class ElementDataProcessing {
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		try {
-			resultSet.close();
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-		try{
-			sqlExecute.stmt.close();
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
+		mysqlResultSetProcessing.closeResultSet();
+		mysqlResultSetProcessing.closeStmt();
 		return elementinfos;
-
 	}
 }

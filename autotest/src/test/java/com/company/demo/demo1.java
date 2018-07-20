@@ -1,20 +1,8 @@
 package com.company.demo;
 
-import com.company.utils.excel.Excel;
-import com.company.utils.pub.GetpathPublic;
-import com.company.utils.pub.IOPublic;
-import com.company.utils.pub.SelectFilePublic;
-import com.company.utils.ui.promptbox.ErrorDialog;
+import com.company.utils.sql.*;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.util.ArrayList;
+import java.sql.Connection;
 
 public class demo1 {
 	public static void main(String []args){
@@ -49,10 +37,27 @@ public class demo1 {
 //		}
 //		System.out.println(excel.getColoumNum());
 //		System.out.println(excel.getRowNum());
-		String[][] a=new String[][]{{"1","2","311111111111111111111111111111111111111111111","4"},{"1","2","3","4"}};
-		System.out.println(a.length);
-		System.out.println(a[0].length);
-		Excel excel=new Excel("D:\\78.xl","开幕式");
-		excel.createExcel(a);
+//		String[][] a=new String[][]{{"1","2","311111111111111111111111111111111111111111111","4"},{"1","2","3","4"}};
+//		System.out.println(a.length);
+//		System.out.println(a[0].length);
+//		Excel excel=new Excel("D:\\78.xl","开幕式");
+//		excel.createExcel(a);
+		SQLConnection sqlConnection=new SQLConnection();
+		Connection connection=sqlConnection.getConnection(SQLConfig.MysqlClass,SQLConfig.MysqlUrl,SQLConfig.MysqlUsername,SQLConfig.MysqlPassword);
+		MysqlCreate mySqlCreate =new MysqlCreate(connection);
+		for(int i=0;i<1000;i++){
+			mySqlCreate.createDataBase("kms1");
+			System.out.println(mySqlCreate.getFlag());
+			mySqlCreate.useDataBase("kms1");
+			System.out.println(mySqlCreate.getFlag());
+			mySqlCreate.createTable("kms");
+			System.out.println(mySqlCreate.getFlag());
+
+		}
+		mySqlCreate.closeStmt();
+		mySqlCreate.closeConnection();
+
+
+
 	}
 }
