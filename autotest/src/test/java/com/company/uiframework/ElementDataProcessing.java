@@ -10,9 +10,7 @@ import java.util.HashMap;
 public class ElementDataProcessing {
 	public static HashMap<String,Locator> readElementInfo(Connection connection,String classSimpleName){
 		MysqlResultSetProcessing mysqlResultSetProcessing=new MysqlResultSetProcessing(connection);
-		ResultSet resultSet=mysqlResultSetProcessing.getResultSet("select * from"+
-				" "+
-				"E_"+classSimpleName);
+		ResultSet resultSet=mysqlResultSetProcessing.getResultSet(2,"select * from E_?",classSimpleName);
 		HashMap<String,Locator> elementinfos=new HashMap<String, Locator>();
 		try{
 			while (resultSet.next()){

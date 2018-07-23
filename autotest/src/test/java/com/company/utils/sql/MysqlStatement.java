@@ -3,42 +3,40 @@ package com.company.utils.sql;
 import java.sql.*;
 
 class MysqlStatement {
-	private Connection connection=null;
-	private Statement stmt=null;//执行静态SQL语句，通过Statement实例实现
-	ResultSet resultSet=null;
-	int number;
-	boolean flag;
+	Connection connection;
+	Statement stmt=null;
+	PreparedStatement pstmt=null;
+	CallableStatement cstmt=null;
 	MysqlStatement(Connection connection){
 		this.connection=connection;
+	}
+
+	void createStatement(){
 		try{
 			stmt=connection.createStatement();
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
 	}
-	 void executeQueryUtil(String sql){
-		//执行select语句
-		try {
-			resultSet=stmt.executeQuery(sql);
-		}catch (SQLException e){
-			e.printStackTrace();
-		}
-	}
-	void executeUpdateUtil(String sql){
-		//执行insert、update、delete、create table、drop table语句
+	void preparedStatement(String sql){
 		try{
-			number=stmt.executeUpdate(sql);
+			pstmt=connection.prepareStatement(sql);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
 	}
-	void executeUtil(String sql){
+	void callableStatement(String sql){
+		//执行存储过程
 		try{
-			flag=stmt.execute(sql);
+			cstmt=connection.prepareCall(sql);
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
 	}
+
+
+
+
 	public void closeConnection(){
 		if (connection!=null){
 			try{
@@ -48,6 +46,7 @@ class MysqlStatement {
 			}
 		}
 	}
+
 	public void closeStmt(){
 		if(stmt!=null){
 			try{
@@ -56,6 +55,24 @@ class MysqlStatement {
 				e.printStackTrace();
 			}
 		}
-
 	}
+	public void closePstmt(){
+		if(stmt!=null){
+			try{
+				pstmt.close();
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+	public void closeCstmt(){
+		if(stmt!=null){
+			try{
+				cstmt.close();
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
 }
