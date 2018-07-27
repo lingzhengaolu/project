@@ -7,3 +7,5 @@ test-output/
 .gitignore
 .git/
 .gitignore.swp
+sample/
+log/

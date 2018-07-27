@@ -1,6 +1,6 @@
 package com.company.uiframework;
 
-public class Locator {
+public class LocatorE {
 	/*
 	控件唯一识别码：controlCode
 	控件名称：controlName
@@ -14,7 +14,7 @@ public class Locator {
 	private String eleRoute;
 	private int timeOut;
 
-	public Locator(String controlCode,String controlName,String eleRecMethod,String eleRoute,int timeOut){
+	public LocatorE(String controlCode, String controlName, String eleRecMethod, String eleRoute, int timeOut){
 		this.controlCode=controlCode;
 		this.controlName=controlName;
 		this.eleRecMethod=eleRecMethod;

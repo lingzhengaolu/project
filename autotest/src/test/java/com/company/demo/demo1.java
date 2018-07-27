@@ -1,17 +1,6 @@
 package com.company.demo;
 
-import com.company.utils.excel.Excel;
-import com.company.utils.pub.ArrayIndexOf;
-import com.company.utils.pub.CreateJSON;
-import com.company.utils.pub.SelectFilePublic;
-import com.company.utils.sql.*;
-import com.company.utils.ui.promptbox.ErrorDialog;
-import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-import org.json.JSONObject;
-
-import java.sql.Connection;
-import java.util.ArrayList;
+import com.company.thread.CreateExcelDataSample;
 
 public class demo1 {
 	public static void main(String []args){
@@ -21,7 +10,7 @@ public class demo1 {
 //
 //
 //		System.out.println(selectFilePublic.PATH);
-		//System.out.println(GetpathPublic.ProjectPath);
+		//System.out.println(GetProjectInfo.ProjectPath);
 		//ErrorDialog.errorDialog("标题","是hi hi i");
 //		ArrayList<String> value=new ArrayList<String>();
 //		for(int i=0;i<10;i++){
@@ -72,21 +61,64 @@ public class demo1 {
 ////		ErrorDialog.errorDialog("数据检查","二维数组字段名错误，请检查！" +
 ////				"目标字段名：controlCode,controlName,eleRecMethod,eleRoute,timeOut");
 //		int[][] c=new int[][]{{1,2,3},{5,6,3}};
-		SelectFilePublic selectFilePublic=new SelectFilePublic();
-		Excel excel=new Excel(selectFilePublic.PATH,"sheet1");
-		String[][] data=excel.readExcel();
-		for(int i=0;i<data.length;i++){
-			for(int j=0;j<data[i].length;j++){
-				System.out.printf(data[i][j]+"\t");
-			}
-			System.out.println();
-		}
+//		SelectFilePublic selectFilePublic=new SelectFilePublic();
+//		Excel excel=new Excel(selectFilePublic.PATH,"sheet1");
+//		String[][] data=excel.readExcel();
+//		Print.printArray(data);
+//		String dbn="ty006";
 //		SQLConnection sqlConnection=new SQLConnection();
-//		Connection connection=sqlConnection.getMysqlConnection(SQLConfig.MysqlClass,SQLConfig.MysqlUrl,SQLConfig.MysqlUsername,SQLConfig.MysqlPassword);
-//		MysqlCreate mysqlCreate=new MysqlCreate(connection);
-//		mysqlCreate.createDataBase("lingzhen");
-//		mysqlCreate.useDataBase("lingzhen");
-//		mysqlCreate.createTable("lzs");
+//		Connection connection=sqlConnection.getMysqlConnection();
+//
+//
+//		new MysqlCreate(connection).useDataBase(dbn);
+//		MysqlSelect mysqlSelect=new MysqlSelect(connection);
+
+//System.out.println("ty006".equalsIgnoreCase(mysqlSelect.getCurrentUsedDatabase()));
+		//ResultSet resultSet=mysqlSelect.selectElement("login");
+//		ResultSet resultSet1=mysqlSelect.selectCasedata("1");
+//		System.out.println(mysqlSelect.getValue(resultSet1,"group"));
+//		ResultSet resultSet2=mysqlSelect.selectCountAll("login");
+
+//		HashMap<String,LocatorE> eleinfos=ElementDataProcessing.readElementInfo(mysqlSelect,"login");
+//		System.out.println(eleinfos.get("14").getEleRoute());
+//
+//		System.out.println(TestCaseDataProcessing.getTestCaseData(mysqlSelect,"13").getTestcase());
+//		System.out.println(TestCaseDataProcessing.getTestCaseData(mysqlSelect,"13").getExpectedResults());
+//		mysqlCreate.createTableE("login");
+//		mysqlCreate.createTableE("mainPage");
+//		mysqlCreate.createTableC();
+//		System.out.println(new ReadJSON("{'78':'89','85':'87'}").getValue("8"));
+//		System.out.println("89xx");
+
+
+
+
+//
+//
+//
+//		String[][] excel1=new Excel("D:\\xxxxxxxxxxx.xls","sheet1").readExcel();
+//		String[][] excel2=new Excel("D:\\yyyyyyyyyy.xls","sheet1").readExcel();
+//		MysqlInsert mysqlInsert=new MysqlInsert(connection);
+//		mysqlInsert.insertElement("login",excel1);
+//		mysqlInsert.insertElement("mainPage",excel1);
+//		mysqlInsert.insertCase(excel2);
+
+//		MysqlUpdate mysqlUpdate=new MysqlUpdate(connection);
+//		mysqlUpdate.updateElement("login",excel1);
+//		mysqlUpdate.updateCaseData(excel2);
+
+//
+//		mysqlSelect.closestmt();
+//		mysqlSelect.closeConnection();
+
+//System.out.println(GetProjectInfo.ProjectName);
+
+
+
+//		new CreateFolder().autoCreate();
+//		System.out.println(GetProjectInfo.ProjectPath);
+//		new CreateExcelSample().createCasedataExSample();
+//		new CreateExcelSample().createPageExSample();
 //		MysqlInsert mysqlInsert=new MysqlInsert(connection);
 //		mysqlInsert.insertElement("lzs",data);
 //		mysqlInsert.closePstmt();
@@ -94,13 +126,25 @@ public class demo1 {
 
 //		SQLConnection sqlConnection=new SQLConnection();
 //		MongoClient mongoConnection=sqlConnection.getMongoConnection();
-//		MongoBaseOperation mongoBaseOperation=new MongoBaseOperation(mongoConnection);
+//		MongoDBCLOperation mongoBaseOperation=new MongoDBCLOperation(mongoConnection);
 //		mongoBaseOperation.useDB("opl");
-		CreateJSON createJSON=new CreateJSON(data);
-		ArrayList<JSONObject> jsonObjects=createJSON.createJSON();
-		for(JSONObject i:jsonObjects){
-			System.out.println(i);
-		}
+//		CreateJSON createJSON=new CreateJSON(data);
+//		ArrayList<JSONObject> jsonObjects=createJSON.createJSON();
+//		MongoBaseOperation mongoBaseOperation=new MongoBaseOperation(mongoConnection,"kmssss","kmsd");
+//		for(JSONObject i:jsonObjects){
+//			System.out.println(i);
+//			mongoBaseOperation.insert(i);
+//
+//		}
+//		mongoBaseOperation.close();
+//		GetProjectInfo getFileNamePublic=new GetProjectInfo();
+//		for(String i:getFileNamePublic.getFileNameList("D:\\project\\autotest\\src\\test\\java\\com\\company\\uiframework")){
+//			System.out.println(i);
+//		}
+		//new CodeInputDialog().inputDialog();
+		new CreateExcelDataSample();
+
+
 
 
 

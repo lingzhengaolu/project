@@ -1,29 +1,32 @@
 package com.company.utils.pub;
 
-import org.json.JSONObject;
-import org.json.JSONString;
-
-import java.util.ArrayList;
+import net.sf.json.JSONObject;
 
 public class CreateJSON {
-	public String[][] value=null;
+	private String[][] value;
+	private String[] field;
+	private int cell;
 	public CreateJSON(String[][] value){
 		this.value=value;
+		this.field=value[0];
+		this.cell=field.length;
 	}
-	public ArrayList<JSONObject> createJSON(){
-		String[] field=value[0];
-		ArrayList<JSONObject> arrayList=new ArrayList<JSONObject>();
-		int row=value.length;
-		int cell=field.length;
-		for(int i=1;i<row;i++){
-			JSONObject jsonObject=new JSONObject();
-			for(int j=0;j<cell;j++){
-				if(value[i][j]!=null&&value[i][j].length()>0){
-					jsonObject.put(field[j],value[i][j]);
-				}
+	public JSONObject createJson(String[] array){
+		JSONObject jsonObject=new JSONObject();
+		for(int j=0;j<cell;j++){
+			if(
+					array[j]!=null&&array[j].length()>0&&
+					!field[j].equalsIgnoreCase("id")&&
+					!field[j].equalsIgnoreCase("group")&&
+					!field[j].equalsIgnoreCase("expectedResults")&&
+					!field[j].equalsIgnoreCase("actualResults")&&
+					!field[j].equalsIgnoreCase("testResults")&&
+					!field[j].equalsIgnoreCase("remarks")&&
+					!field[j].equalsIgnoreCase("feedbackResults")&&
+					!field[j].equalsIgnoreCase("taskType")){
+				jsonObject.put(field[j],array[j]);
 			}
-			arrayList.add(jsonObject);
 		}
-		return arrayList;
+		return jsonObject;
 	}
 }

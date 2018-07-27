@@ -1,31 +1,56 @@
 package com.company.utils.sql;
 
-import com.company.utils.pub.ArrayIndexOf;
-import com.company.utils.ui.promptbox.ErrorDialog;
+import com.company.utils.pub.CreateJSON;
+import com.company.utils.excel.GetFieldNameIndex;
 
 import java.sql.Connection;
+import java.util.HashMap;
 
 public class MysqlInsert extends MysqlExecute{
+	//后续处理插入状态
+	private GetFieldNameIndex getFieldNameIndex=new GetFieldNameIndex();
 	public MysqlInsert(Connection connection){
 		super(connection);
 	}
-	public void insertElement(String tableName,String [][] value){
-		int controlCode=ArrayIndexOf.arrayIndex(value[0],"controlCode");
-		int controlName=ArrayIndexOf.arrayIndex(value[0],"controlName");
-		int eleRecMethod=ArrayIndexOf.arrayIndex(value[0],"eleRecMethod");
-		int eleRoute=ArrayIndexOf.arrayIndex(value[0],"eleRoute");
-		int timeOut=ArrayIndexOf.arrayIndex(value[0],"timeOut");
-		if(controlCode==-1||controlName==-1||eleRecMethod==-1||eleRoute==-1||timeOut==-1){
-			ErrorDialog.errorDialog("数据检查","二维数组字段名错误，请检查！" +
-					"目标字段名：controlCode,controlName,eleRecMethod,eleRoute,timeOut");
-			System.exit(0);
-		}
-		String sql="insert into "+tableName+"(controlCode,controlName,eleRecMethod,eleRoute,timeOut) values(?,?,?,?,?)";
-		MysqlExecute mysqlExecute=new MysqlExecute(connection);
+	public void insertElement(String pageName,String [][] value){
+		HashMap<String,Integer> hashMap=getFieldNameIndex.getEleExFieldIndex(value);
+		String sql="insert into E_"+pageName+"(controlCode,controlName,eleRecMethod,eleRoute,timeOut,remarks) values(?,?,?,?,?,?)";
 		int row=value.length;
 		for(int i=1;i<row;i++){
-			mysqlExecute.executeUpdateUtil(2,sql,value[i][controlCode],value[i][controlName],value[i][eleRecMethod],value[i][eleRoute],value[i][timeOut]);
+			if(value[i][hashMap.get("taskType")].contains("插入")||value[i][hashMap.get("taskType")].contains("insert")){
+				executeUpdateUtil(
+						2, sql,
+						value[i][hashMap.get("controlCode")],
+						value[i][hashMap.get("controlName")],
+						value[i][hashMap.get("eleRecMethod")],
+						value[i][hashMap.get("eleRoute")],
+						value[i][hashMap.get("timeOut")],
+						value[i][hashMap.get("remarks")]
+				);
+			}
 		}
 
+	}
+	public void insertCase(String[][] value){
+		CreateJSON createJSON=new CreateJSON(value);
+		HashMap<String,Integer> hashMap=getFieldNameIndex.getCaseExFiledIndex(value);
+		String sql="insert into testCaseData(id,`group`,testcase,expectedResults,actualResults,testResults,remarks) values(?,?,?,?,?,?,?)";
+		int row=value.length;
+		for(int i=1;i<row;i++){
+			if(value[i][hashMap.get("taskType")].contains("插入")||value[i][hashMap.get("taskType")].contains("insert")){
+				executeUpdateUtil(2,sql,
+						value[i][hashMap.get("id")],
+						value[i][hashMap.get("group")],
+						createJSON.createJson(value[i]).toString(),
+						value[i][hashMap.get("expectedResults")],
+						value[i][hashMap.get("actualResults")],
+						value[i][hashMap.get("testResults")],
+						value[i][hashMap.get("remarks")]
+				);
+			}
+		}
+	}
+	public int getNumber(){
+		return number;
 	}
 }

@@ -1,7 +1,5 @@
 package com.company.utils.sql;
 
-import com.company.utils.ui.promptbox.ErrorDialog;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,12 +11,13 @@ class MysqlExecute extends MysqlStatementProcessing{
 	MysqlExecute(Connection connection){
 		super(connection);
 	}
+
 	void executeQueryUtil(int statementType,String sql,String ... value){
 		//执行select语句
 		switch (statementType){
 			case 1:
 				if(value.length>0){
-					ErrorDialog.errorDialog("处理语句","statementType值为1时，不能传入参数value");
+					//demo
 					break;
 				}
 				stmtProcessing();
@@ -30,10 +29,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 2:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为2时，必须传入参数value");
-					break;
+					pstmtProcessing(sql);
+				}else {
+					pstmtProcessing(sql,value);
 				}
-				pstmtProcessing(sql,value);
 				try{
 					resultSet=pstmt.executeQuery();
 				}catch (SQLException e){
@@ -42,10 +41,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 3:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为3时，必须传入参数value");
-					break;
+					cstmtProcessing(sql);
+				}else {
+					cstmtProcessing(sql,value);
 				}
-				cstmtProcessing(sql,value);
 				try{
 					resultSet=cstmt.executeQuery();
 				}catch (SQLException e){
@@ -53,7 +52,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				}
 				break;
 				default:
-					ErrorDialog.errorDialog("处理语句","statementType超出设定范围[1,3]");
+					//demo
 					break;
 		}
 
@@ -63,7 +62,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 		switch (statementType){
 			case 1:
 				if(value.length>0){
-					ErrorDialog.errorDialog("处理语句","statementType值为1时，不能传入参数value");
+					//demo
 					break;
 				}
 				stmtProcessing();
@@ -75,10 +74,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 2:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为2时，必须传入参数value");
-					break;
+					pstmtProcessing(sql);
+				}else {
+					pstmtProcessing(sql,value);
 				}
-				pstmtProcessing(sql,value);
 				try{
 					number=pstmt.executeUpdate();
 				}catch (SQLException e){
@@ -87,10 +86,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 3:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为3时，必须传入参数value");
-					break;
+					cstmtProcessing(sql);
+				}else {
+					cstmtProcessing(sql,value);
 				}
-				cstmtProcessing(sql,value);
 				try{
 					number=cstmt.executeUpdate();
 				}catch (SQLException e){
@@ -98,7 +97,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				}
 				break;
 			default:
-				ErrorDialog.errorDialog("处理语句","statementType超出设定范围[1,3]");
+				//demo
 				System.exit(0);
 				break;
 		}
@@ -107,7 +106,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 		switch (statementType){
 			case 1:
 				if(value.length>0){
-					ErrorDialog.errorDialog("处理语句","statementType值为1时，不能传入参数value");
+					//demo
 					break;
 				}
 				stmtProcessing();
@@ -119,10 +118,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 2:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为2时，必须传入参数value");
-					break;
+					pstmtProcessing(sql);
+				}else {
+					pstmtProcessing(sql,value);
 				}
-				pstmtProcessing(sql,value);
 				try{
 					flag=pstmt.execute();
 				}catch (SQLException e){
@@ -131,10 +130,10 @@ class MysqlExecute extends MysqlStatementProcessing{
 				break;
 			case 3:
 				if(value.length==0){
-					ErrorDialog.errorDialog("处理语句","statementType值为3时，必须传入参数value");
-					break;
+					cstmtProcessing(sql);
+				}else {
+					cstmtProcessing(sql,value);
 				}
-				cstmtProcessing(sql,value);
 				try{
 					flag=cstmt.execute();
 				}catch (SQLException e){
@@ -142,11 +141,17 @@ class MysqlExecute extends MysqlStatementProcessing{
 				}
 				break;
 			default:
-				ErrorDialog.errorDialog("处理语句","statementType超出设定范围[1,3]");
+				//demo
 				System.exit(0);
 				break;
 		}
 	}
-
+	public void closeResultSet(){
+		try{
+			resultSet.close();
+		}catch (SQLException e){
+			e.printStackTrace();
+		}
+	}
 
 }

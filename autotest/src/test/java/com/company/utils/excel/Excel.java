@@ -63,8 +63,15 @@ public class Excel {
 			for(int j=0;j<coloumNum;j++){
 				Row row=sheet.getRow(i);
 				Cell cell=row.getCell(j);
-				cell.setCellType(Cell.CELL_TYPE_STRING);//强制转换为String
-				data[i][j]=cell.getStringCellValue().trim();
+				if(cell==null){
+					data[i][j]="";
+				}else {
+					cell.setCellType(Cell.CELL_TYPE_STRING);//强制转换为String
+					data[i][j]=cell.getStringCellValue().trim();
+					if(data[i][j].length()==0){
+						data[i][j]="";
+					}
+				}
 			}
 		}
 		try{

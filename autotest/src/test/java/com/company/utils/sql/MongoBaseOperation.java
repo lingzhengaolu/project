@@ -1,26 +1,20 @@
 package com.company.utils.sql;
 
+import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
-
-public class MongoBaseOperation {
-	MongoClient connection;
-	MongoDatabase mongoDatabase=null;
-	public MongoBaseOperation(MongoClient connection,String DBName){
-		this.connection=connection;
-		this.mongoDatabase=connection.getDatabase(DBName);
-	}
-	public void getMongoDatabase(String DBName){
-		mongoDatabase=connection.getDatabase(DBName);
-	}
+import com.mongodb.util.JSON;
+import net.sf.json.JSONObject;
 
 
-	public void close(){
-		if(mongoDatabase!=null){
-			mongoDatabase=null;
-		}
-		if(connection!=null){
-			connection.close();
-		}
+public class MongoBaseOperation extends MongoDBCLOperation {
+	public MongoBaseOperation(MongoClient connection,String dbName,String collectionName){
+		super(connection);
+		useDB(dbName);
+		useCollection(collectionName);
 	}
+	public void insert(JSONObject jsonObject){
+		DBObject dbObject=(DBObject)JSON.parse(jsonObject.toString());
+		collection.insertOne(dbObject);
+	}
+
 }

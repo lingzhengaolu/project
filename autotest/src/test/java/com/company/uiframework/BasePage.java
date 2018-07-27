@@ -1,6 +1,7 @@
 package com.company.uiframework;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -10,8 +11,8 @@ public class BasePage extends WebElementUtils{
 	public BasePage(Connection connection, WebDriver driver){
 		super(connection,driver);
 	}
-	public void switchToFrame(Locator locator){
-		WebElement el=findElement(locator);
+	public void switchToFrame(LocatorE locatorE){
+		WebElement el=findElement(locatorE);
 		try{
 			driver.switchTo().frame(el);
 		}catch (Exception e){
@@ -67,4 +68,9 @@ public class BasePage extends WebElementUtils{
 			e.printStackTrace();
 		}
 	}
+	public String javascript(String script){
+		String value = (String)((JavascriptExecutor)driver).executeScript(script);
+		return value;
+	}
+
 }

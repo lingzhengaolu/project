@@ -35,19 +35,7 @@ class MysqlStatement {
 	}
 
 
-
-
-	public void closeConnection(){
-		if (connection!=null){
-			try{
-				connection.close();
-			}catch (SQLException e){
-				e.printStackTrace();
-			}
-		}
-	}
-
-	public void closeStmt(){
+    public void closestmt(){
 		if(stmt!=null){
 			try{
 				stmt.close();
@@ -55,20 +43,26 @@ class MysqlStatement {
 				e.printStackTrace();
 			}
 		}
-	}
-	public void closePstmt(){
-		if(stmt!=null){
+		if(pstmt!=null){
 			try{
 				pstmt.close();
 			}catch (SQLException e){
 				e.printStackTrace();
 			}
 		}
-	}
-	public void closeCstmt(){
-		if(stmt!=null){
+		if(cstmt!=null){
 			try{
 				cstmt.close();
+			}catch (SQLException e){
+				e.printStackTrace();
+			}
+		}
+	}
+
+	public void closeConnection(){
+		if (connection!=null){
+			try{
+				connection.close();
 			}catch (SQLException e){
 				e.printStackTrace();
 			}

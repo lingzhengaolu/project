@@ -1,17 +1,15 @@
 package com.company.uiframework;
 
-import com.company.utils.sql.MysqlResultSetProcessing;
+import com.company.utils.sql.MysqlSelect;
 
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
 public class ElementDataProcessing {
-	public static HashMap<String,Locator> readElementInfo(Connection connection,String classSimpleName){
-		MysqlResultSetProcessing mysqlResultSetProcessing=new MysqlResultSetProcessing(connection);
-		ResultSet resultSet=mysqlResultSetProcessing.getResultSet(2,"select * from E_?",classSimpleName);
-		HashMap<String,Locator> elementinfos=new HashMap<String, Locator>();
+	public static HashMap<String,LocatorE> readElementInfo(MysqlSelect mysqlSelect, String classSimpleName){
+		ResultSet resultSet=mysqlSelect.selectElement(classSimpleName);
+		HashMap<String,LocatorE> elementinfos=new HashMap<String, LocatorE>();
 		try{
 			while (resultSet.next()){
 				String controlCode=resultSet.getString("controlCode").trim();
@@ -19,14 +17,14 @@ public class ElementDataProcessing {
 				String eleRecMethod=resultSet.getString("eleRecMethod").trim();
 				String eleRoute=resultSet.getString("eleRoute").trim();
 				int timeOut=Integer.parseInt(resultSet.getString("timeOut").trim());
-				Locator locator=new Locator(controlCode,controlName,eleRecMethod,eleRoute,timeOut);
-				elementinfos.put(controlCode,locator);
+				LocatorE locatorE =new LocatorE(controlCode,controlName,eleRecMethod,eleRoute,timeOut);
+				elementinfos.put(controlCode, locatorE);
 			}
 		}catch (SQLException e){
 			e.printStackTrace();
 		}
-		mysqlResultSetProcessing.closeResultSet();
-		mysqlResultSetProcessing.closeStmt();
+		mysqlSelect.closeResultSet();
+		mysqlSelect.closestmt();
 		return elementinfos;
 	}
 }

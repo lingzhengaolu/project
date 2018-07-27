@@ -1,5 +1,6 @@
 package com.company.uiframework;
 
+import com.company.utils.sql.MysqlSelect;
 import org.openqa.selenium.WebDriver;
 
 import java.sql.Connection;
@@ -13,8 +14,8 @@ public class DriverUtils {
 	protected WebDriver driver;
 	protected Connection connection;
 	public DriverUtils(Connection connection,WebDriver driver){
-		this.connection=connection;
 		this.driver=driver;
+		this.connection=connection;
 	}
 	public void wait(int second){
 		try{

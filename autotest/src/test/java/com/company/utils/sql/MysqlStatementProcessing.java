@@ -24,6 +24,9 @@ class MysqlStatementProcessing extends MysqlStatement{
 
 		}
 	}
+	void pstmtProcessing(String sql){
+		preparedStatement(sql);
+	}
 	void cstmtProcessing(String sql,String[] value){
 		preparedStatement(sql);
 		int length=value.length;
@@ -36,5 +39,8 @@ class MysqlStatementProcessing extends MysqlStatement{
 
 		}
 	}
+	void cstmtProcessing(String sql){
+		preparedStatement(sql);
+		}
 
 }

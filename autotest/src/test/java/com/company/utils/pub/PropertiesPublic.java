@@ -28,7 +28,7 @@ public class PropertiesPublic {
             e.printStackTrace();
         }
         if(keyName.contains("driverpath")){
-            value=GetpathPublic.ProjectPath+value;
+            value=GetProjectInfo.ProjectPath+value;
         }
         return value;
     }
