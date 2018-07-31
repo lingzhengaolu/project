@@ -1,6 +1,13 @@
 package com.company.demo;
 
 import com.company.thread.CreateExcelDataSample;
+import org.apache.commons.jexl2.Expression;
+import org.apache.commons.jexl2.JexlContext;
+import org.apache.commons.jexl2.JexlEngine;
+import org.apache.commons.jexl2.MapContext;
+
+import java.util.HashMap;
+
 
 public class demo1 {
 	public static void main(String []args){
@@ -142,7 +149,18 @@ public class demo1 {
 //			System.out.println(i);
 //		}
 		//new CodeInputDialog().inputDialog();
-		new CreateExcelDataSample();
+//		new CreateExcelDataSample();
+//		int s=10;
+//		HashMap<String,Object> hashMap=new HashMap<>();
+//		String expre="i=s+9";
+//		hashMap.put("s",s);
+//		JexlContext code=convertToCode(expre,hashMap);
+//		System.out.println(code.get("i"));
+
+		String i=null;
+		System.out.println(i.length());
+
+
 
 
 
@@ -156,6 +174,16 @@ public class demo1 {
 //		System.out.println(i);
 //		System.out.println(j);
 //		System.out.println(k);
+	public static JexlContext convertToCode(String jexlExp,HashMap<String,Object> hashMap){
+		JexlEngine jexlEngine=new JexlEngine();
+		Expression expression=jexlEngine.createExpression(jexlExp);
+		JexlContext jexlContext=new MapContext();
+		for(String key:hashMap.keySet()){
+			jexlContext.set(key,hashMap.get(key));
+		}
+		return jexlContext;
+
+	}
 //	}
 
 

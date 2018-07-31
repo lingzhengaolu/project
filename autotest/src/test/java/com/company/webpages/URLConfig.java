@@ -1,4 +1,4 @@
-package com.company.pages;
+package com.company.webpages;
 
 import com.company.utils.pub.PropertiesPublic;
 

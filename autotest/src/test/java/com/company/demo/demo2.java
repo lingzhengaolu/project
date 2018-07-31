@@ -1,6 +1,6 @@
 package com.company.demo;
 
-import com.company.pages.LoginPage;
+import com.company.webpages.LoginPage;
 import com.company.testcases.TestCaseDataProcessing;
 import com.company.thread.DataInsertIntoMysql;
 import com.company.thread.UpdateMysqlData;

@@ -3,3 +3,21 @@
 元素识别方式：eleRecMethod
 元素路径：eleRoute
 显式等待时长：timeOut
+
+
+
+后续集中 httpclient 接口测试
+
+appium手机自动化测试另起项目 原生识别+H5
+
+
+
+计划：
+1、反馈结果的处理：insert、update、select
+2、异常处理：连接、数据、代码、元素、用例
+3、入口处理
+4、数据传递优化处理
+5、日志监听
+6、reportng报表及报表优化、改进（错误页面截图、整合错误日志、添加图表统计）
+7、jenkins持续集成
+
