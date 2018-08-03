@@ -19,6 +19,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				driver.switchTo().frame(el);
 				flag=true;
 			}catch (Exception e){
@@ -39,6 +40,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				driver.switchTo().defaultContent();
 				flag=true;
 			}catch (Exception e){
@@ -58,6 +60,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				Alert alert=driver.switchTo().alert();
 				alert.accept();
 				flag=true;
@@ -78,6 +81,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				Alert alert=driver.switchTo().alert();
 				alert.dismiss();
 				flag=true;
@@ -100,6 +104,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				Alert alert=driver.switchTo().alert();
 				raw=alert.getText();
 				flag=true;
@@ -121,6 +126,7 @@ public class BasePage extends WebElementUtils{
 		int num=0;
 		while (!flag){
 			try{
+				wait(1);
 				Alert alert=driver.switchTo().alert();
 				alert.sendKeys(value);
 				wait(0.5);

@@ -1,0 +1,12 @@
+package com.company.webpages.mainpage;
+
+import com.company.uiframework.BasePage;
+import org.openqa.selenium.WebDriver;
+
+import java.sql.Connection;
+
+public class BuMenGuanLiPage extends BasePage {
+	public BuMenGuanLiPage(Connection connection, WebDriver driver){
+		super(connection,driver);
+	}
+}

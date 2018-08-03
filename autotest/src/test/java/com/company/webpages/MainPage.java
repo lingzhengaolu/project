@@ -24,26 +24,36 @@ public class MainPage extends BasePage {
 	        baiTanMingXi,
 	        zhangHaoHuoYue,
 	        tuiGuanXiaoYi,
+			userName,
 	        loginOut;
 	public MainPage(Connection connection, WebDriver driver){
 		super(connection,driver);
-		waiHuRenWu=getLocator("waiHuRenWu".trim());//外呼任务
-		waiHuFenPei=getLocator("waiHuFenPei".trim());//外呼分配
-		waiHuBaoBiao=getLocator("waiHuBaoBiao".trim());//外呼报表
-		waiHuLuYin=getLocator("waiHuLuYin".trim());//外呼录音
-		baiTanBaoBiao=getLocator("baiTanBaoBiao".trim());//摆摊报表
-		huDongZhiCheng=getLocator("huDongZhiCheng".trim());//互动支撑
-		muBanShenHe=getLocator("muBanShenHe".trim());//模板审核
-		mianDaRaoMingDan=getLocator("mianDaRaoMingDan".trim());//免打扰名单
-		yongHuGuanLi=getLocator("yongHuGuanLi".trim());//用户管理
-		buMenGuanLi=getLocator("buMenGuanLi".trim());//部门管理
-		quanXianGuanLi=getLocator("quanXianGuanLi".trim());//权限管理
-		yuRePeiZhi=getLocator("yuRePeiZhi".trim());//预热配置
-		biaoQianGuanLi=getLocator("biaoQianGuanLi".trim());//标签管理
-		baiTanMingXi=getLocator("baiTanMingXi".trim());//摆摊明细
-		zhangHaoHuoYue=getLocator("zhangHaoHuoYue".trim());//账号活跃
-		tuiGuanXiaoYi=getLocator("tuiGuanXiaoYi".trim());//推广效益
-		loginOut=getLocator("loginOut".trim());//退出登录
+		waiHuRenWu=getLocator("waiHuRenWu");//外呼任务
+		waiHuFenPei=getLocator("waiHuFenPei");//外呼分配
+		waiHuBaoBiao=getLocator("waiHuBaoBiao");//外呼报表
+		waiHuLuYin=getLocator("waiHuLuYin");//外呼录音
+		baiTanBaoBiao=getLocator("baiTanBaoBiao");//摆摊报表
+		huDongZhiCheng=getLocator("huDongZhiCheng");//互动支撑
+		muBanShenHe=getLocator("muBanShenHe");//模板审核
+		mianDaRaoMingDan=getLocator("mianDaRaoMingDan");//免打扰名单
+		yongHuGuanLi=getLocator("yongHuGuanLi");//用户管理
+		buMenGuanLi=getLocator("buMenGuanLi");//部门管理
+		quanXianGuanLi=getLocator("quanXianGuanLi");//权限管理
+		yuRePeiZhi=getLocator("yuRePeiZhi");//预热配置
+		biaoQianGuanLi=getLocator("biaoQianGuanLi");//标签管理
+		baiTanMingXi=getLocator("baiTanMingXi");//摆摊明细
+		zhangHaoHuoYue=getLocator("zhangHaoHuoYue");//账号活跃
+		tuiGuanXiaoYi=getLocator("tuiGuanXiaoYi");//推广效益
+		userName=getLocator("userName");//用户名
+		loginOut=getLocator("loginOut");//退出登录
+	}
+	public String getMainPageUrl() {
+		//获取当前url地址
+		return getUrl();
+	}
+	public String getUserName(){
+		//获取登录用户名
+		return getText(userName);
 	}
 	public void clickWaiHuRenWu(){
 		click(waiHuRenWu);

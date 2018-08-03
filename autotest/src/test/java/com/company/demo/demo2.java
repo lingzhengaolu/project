@@ -1,7 +1,7 @@
 package com.company.demo;
 
 import com.company.webpages.LoginPage;
-import com.company.testcases.TestCaseDataProcessing;
+import com.company.testcases.pub.TestCaseDataProcessing;
 import com.company.thread.DataInsertIntoMysql;
 import com.company.thread.UpdateMysqlData;
 import com.company.uiframework.WebDrivers;

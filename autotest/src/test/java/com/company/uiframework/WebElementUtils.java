@@ -28,20 +28,19 @@ public class WebElementUtils extends DriverUtils{
 		WebElement element=null;
 		switch (locatorE.getEleRecMethod()){
 			case "id":
-				System.out.println(locatorE.getEleRecMethod());
 				element=driver.findElement(By.id(locatorE.getEleRoute()));
 				break;
 			case "name":
-				System.out.println(locatorE.getEleRecMethod());
 				element=driver.findElement(By.name(locatorE.getEleRoute()));
 				break;
 			case "xpath":
-				System.out.println(locatorE.getEleRecMethod());
 				element=driver.findElement(By.xpath(locatorE.getEleRoute()));
 				break;
 			case "css":
-				System.out.println(locatorE.getEleRecMethod());
 				element=driver.findElement(By.cssSelector(locatorE.getEleRoute()));
+				break;
+			case "linktext":
+				element=driver.findElement(By.linkText(locatorE.getEleRoute()));
 				break;
 			default:
 				System.out.println(locatorE.getEleRecMethod());
@@ -64,6 +63,49 @@ public class WebElementUtils extends DriverUtils{
 		String value=null;
 		value=driver.getPageSource();
 		return value;
+	}
+	public HashMap<String,Integer> getObjectSize(LocatorE locatorE){
+		WebElement element=findElement(locatorE);
+		HashMap<String,Integer> hashMap=new HashMap<>();
+		int height=element.getSize().height;
+		int width=element.getSize().width;
+		hashMap.put("height",height);
+		hashMap.put("width",width);
+		return hashMap;
+	}
+	public Boolean objectIsDisplayed(LocatorE locatorE){
+		//判断对象是否可见
+		WebElement element=findElement(locatorE);
+		boolean value=element.isDisplayed();
+		return value;
+	}
+	public Boolean objectIsEnabled(LocatorE locatorE){
+		//判断对象是否被禁用
+		WebElement element=findElement(locatorE);
+		boolean value=element.isEnabled();
+		return value;
+	}
+	public Boolean objectIsSelected(LocatorE locatorE){
+		//判断对象是否被选中
+		WebElement element=findElement(locatorE);
+		boolean value=element.isSelected();
+		return value;
+	}
+	public String getObjectTagName(LocatorE locatorE){
+		//获取对象标签名称
+		WebElement element=findElement(locatorE);
+		String value=element.getTagName();
+		return value;
+	}
+	public HashMap<String, Integer> getObjectLocation(LocatorE locatorE){
+		//获取对象坐标
+		WebElement element=findElement(locatorE);
+		HashMap<String,Integer> hashMap=new HashMap<>();
+		int x=element.getLocation().x;
+		int y=element.getLocation().y;
+		hashMap.put("x",x);
+		hashMap.put("y",y);
+		return hashMap;
 	}
 	public void click(LocatorE locatorE){
 		WebElement element=findElement(locatorE);

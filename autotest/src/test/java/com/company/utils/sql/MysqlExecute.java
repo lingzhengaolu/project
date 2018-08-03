@@ -24,6 +24,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try {
 					resultSet=stmt.executeQuery(sql);
 				}catch (SQLException e){
+					resultSet=null;
 					e.printStackTrace();
 				}
 				break;
@@ -36,6 +37,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					resultSet=pstmt.executeQuery();
 				}catch (SQLException e){
+					resultSet=null;
 					e.printStackTrace();
 				}
 				break;
@@ -48,6 +50,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					resultSet=cstmt.executeQuery();
 				}catch (SQLException e){
+					resultSet=null;
 					e.printStackTrace();
 				}
 				break;
@@ -69,6 +72,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try {
 					number=stmt.executeUpdate(sql);
 				}catch (SQLException e){
+					number=-1;
 					e.printStackTrace();
 				}
 				break;
@@ -81,6 +85,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					number=pstmt.executeUpdate();
 				}catch (SQLException e){
+					number=-1;
 					e.printStackTrace();
 				}
 				break;
@@ -93,6 +98,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					number=cstmt.executeUpdate();
 				}catch (SQLException e){
+					number=-1;
 					e.printStackTrace();
 				}
 				break;
@@ -113,6 +119,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try {
 					flag=stmt.execute(sql);
 				}catch (SQLException e){
+					flag=false;
 					e.printStackTrace();
 				}
 				break;
@@ -125,6 +132,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					flag=pstmt.execute();
 				}catch (SQLException e){
+					flag=false;
 					e.printStackTrace();
 				}
 				break;
@@ -137,6 +145,7 @@ class MysqlExecute extends MysqlStatementProcessing{
 				try{
 					flag=cstmt.execute();
 				}catch (SQLException e){
+					flag=false;
 					e.printStackTrace();
 				}
 				break;

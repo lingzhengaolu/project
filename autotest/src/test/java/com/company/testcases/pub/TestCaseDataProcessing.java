@@ -1,4 +1,4 @@
-package com.company.testcases;
+package com.company.testcases.pub;
 
 import com.company.utils.sql.MysqlSelect;
 

@@ -1,10 +1,12 @@
 package com.company.uiframework;
 
 import com.company.utils.sql.MysqlSelect;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -38,6 +40,11 @@ public class DriverUtils {
 			e.printStackTrace();
 		}
 	}
+	public String getUrl(){
+		String value;
+		value=driver.getCurrentUrl();
+		return value;
+	}
 	public void back(){
 		try{
 			driver.navigate().back();
@@ -58,6 +65,20 @@ public class DriverUtils {
 		}catch (Exception e){
 			e.printStackTrace();
 		}
+	}
+	public ArrayList<HashMap<String,String>> getCookies(){
+		Set<Cookie> cookies=driver.manage().getCookies();
+		ArrayList<HashMap<String,String>> arrayList=new ArrayList<>();
+		for(Cookie cookie:cookies){
+			HashMap<String,String> hashMap=new HashMap<>();
+			hashMap.put("name",cookie.getName());//名称
+			hashMap.put("path",cookie.getPath());//路径
+			hashMap.put("value",cookie.getValue());//值
+			hashMap.put("expiry",cookie.getExpiry().toString());//有效时间
+			hashMap.put("domain",cookie.getDomain());//作用域
+			arrayList.add(hashMap);
+		}
+		return arrayList;
 	}
 	public void switchToHandle(int index){
 		try{

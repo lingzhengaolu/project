@@ -1,4 +1,4 @@
-package com.company.testcases;
+package com.company.testcases.pub;
 
 public class LocatorC {
 	private String id;

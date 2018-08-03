@@ -28,12 +28,12 @@ public class js_diaoyong {
 
         driver.get(url);
         //1、在页面直接执行js
-        JavascriptExecutor js=(JavascriptExecutor)driver;
-        String i="";
-        i=(String)js.executeScript("var s=prompt('测试')");
-        while ((i=(String)((JavascriptExecutor)driver).executeScript("return s")).length()!=4){
-            System.out.println(i);
-        }
+//        JavascriptExecutor js=(JavascriptExecutor)driver;
+//        String i="";
+//        i=(String)js.executeScript("var s=prompt('测试')");
+//        while ((i=(String)((JavascriptExecutor)driver).executeScript("return s")).length()!=4){
+//            System.out.println(i);
+//        }
 
 //        wait(3);
 //        driver.switchTo().alert().accept();//点击确认按钮，关闭alert弹窗
@@ -42,8 +42,8 @@ public class js_diaoyong {
 //        String str = (String)((JavascriptExecutor)driver).executeScript("return document.getElementById('su').value");
 //        System.out.println(str);
 //
-//        String str1 = (String)((JavascriptExecutor)driver).executeScript("return document.getElementById('su').getAttribute('id')");
-//        System.out.println(str1);
+        String str1 = (String)((JavascriptExecutor)driver).executeScript("return document.getElementById('su').getAttribute('id')");
+        System.out.println(str1);
 
         //3、滚动条操作
 
