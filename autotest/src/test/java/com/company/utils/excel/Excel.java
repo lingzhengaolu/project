@@ -9,6 +9,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.*;
 
+//Excel类数据写入效率低，但是数据写入属于实时写入，实时写入，实时保存
 public class Excel {
 	private String path;
 	private String sheetName;
@@ -68,7 +69,7 @@ public class Excel {
 				}else {
 					cell.setCellType(Cell.CELL_TYPE_STRING);//强制转换为String
 					data[i][j]=cell.getStringCellValue().trim();
-					if(data[i][j].length()==0){
+					if(data[i][j].length()==0||"null".equalsIgnoreCase(data[i][j])){
 						data[i][j]="";
 					}
 				}

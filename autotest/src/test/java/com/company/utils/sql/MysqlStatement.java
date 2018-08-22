@@ -59,14 +59,4 @@ class MysqlStatement {
 		}
 	}
 
-	public void closeConnection(){
-		if (connection!=null){
-			try{
-				connection.close();
-			}catch (SQLException e){
-				e.printStackTrace();
-			}
-		}
-	}
-
 }
