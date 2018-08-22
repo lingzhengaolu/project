@@ -12,7 +12,7 @@ import java.util.List;
 
 public class SQLConnection {
 	private Connection connection=null;
-	private MongoClient mongoClient=null;
+//	private MongoClient mongoClient=null;
 	public Connection getMysqlConnection() {
 		try {
 			Class.forName(SQLConfig.MysqlClass);
@@ -26,16 +26,16 @@ public class SQLConnection {
 		}
 		return connection;
 	}
-	public MongoClient getMongoConnection(){
-		ServerAddress serverAddress=new ServerAddress(SQLConfig.MongoUrl,SQLConfig.MongoPort);
-		List<ServerAddress> address=new ArrayList<ServerAddress>();
-		address.add(serverAddress);
-		MongoCredential mongoCredential=MongoCredential.createScramSha1Credential(SQLConfig.MongoUsername,"admin",SQLConfig.MongoPassword.toCharArray());
-		List<MongoCredential> credential=new ArrayList<MongoCredential>();
-		credential.add(mongoCredential);
-		mongoClient=new MongoClient(address,credential);
-		return mongoClient;
-	}
+//	public MongoClient getMongoConnection(){
+//		ServerAddress serverAddress=new ServerAddress(SQLConfig.MongoUrl,SQLConfig.MongoPort);
+//		List<ServerAddress> address=new ArrayList<>();
+//		address.add(serverAddress);
+//		MongoCredential mongoCredential=MongoCredential.createScramSha1Credential(SQLConfig.MongoUsername,"admin",SQLConfig.MongoPassword.toCharArray());
+//		List<MongoCredential> credential=new ArrayList<>();
+//		credential.add(mongoCredential);
+//		mongoClient=new MongoClient(address,credential);
+//		return mongoClient;
+//	}
 	public void close(){
 		if(connection!=null){
 			try{
@@ -44,9 +44,9 @@ public class SQLConnection {
 				e.printStackTrace();
 			}
 		}
-		if(mongoClient!=null){
-			mongoClient.close();
-		}
+//		if(mongoClient!=null){
+//			mongoClient.close();
+//		}
 	}
 
 }

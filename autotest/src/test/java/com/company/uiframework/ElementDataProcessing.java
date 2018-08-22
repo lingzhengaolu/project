@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class ElementDataProcessing {
 	public static HashMap<String,LocatorE> readElementInfo(MysqlSelect mysqlSelect, String classSimpleName){
 		ResultSet resultSet=mysqlSelect.selectElement(classSimpleName);
-		HashMap<String,LocatorE> elementinfos=new HashMap<String, LocatorE>();
+		HashMap<String,LocatorE> elementinfos=new HashMap<>();
 		try{
 			while (resultSet.next()){
 				String controlCode=resultSet.getString("controlCode").trim();

@@ -115,9 +115,13 @@ public class DatabaseOperations extends MysqlExecute{
     }
     public void drop(){
         //删库
+        String sql="drop database "+DBName;
+        executeUpdateUtil(2,sql);
     }
     public void drop(String DBName){
         //删库
+        String sql="drop database "+DBName;
+        executeUpdateUtil(2,sql);
     }
     public void create(String DBName){
         //建库

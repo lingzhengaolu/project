@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class TableOperations extends DatabaseOperations{
     private String tableName;
     public TableOperations(Connection connection,String DBName){
-        super(connection,DBName);
+        super(connection,DBName);//db被使用则create
         if(!super.isUsed()){ use(DBName);}
     }
     public TableOperations(Connection connection,String DBName,String tableName){
@@ -31,26 +31,41 @@ public class TableOperations extends DatabaseOperations{
         return existenceDetection(tableName);
     }
 
-    public void create(String tableName,String sql){
-        //建表
-
-
-    }
     public void create(String sql){
         //建表
-
+        executeUpdateUtil(2,sql);
 
     }
+
     public void drop(String tableName){
         //重写 删表
+        String sql="drop table "+tableName;
+        executeUpdateUtil(2,sql);
 
     }
     public void drop(){
         //重写 删表
+        String sql="drop table "+tableName;
+        executeUpdateUtil(2,sql);
 
     }
-    public void delete(String tableName){
+
+    public void truncate(){
+        //清空表格data
+        String sql="truncate table "+tableName;
+        executeUpdateUtil(2,sql);
+
+    }
+    public void truncate(String tableName){
+        //情空表格 重载
+        String sql="truncate table "+tableName;
+        executeUpdateUtil(2,sql);
+
+    }
+
+    public void delete(String sql){
         //删除表数据,不删除表结构
+        executeUpdateUtil(2,sql);
 
     }
     private String returnStr(ArrayList<String> value){
@@ -71,40 +86,43 @@ public class TableOperations extends DatabaseOperations{
     }
     public void select(){
         String sql="select * from "+tableName;
+        executeUpdateUtil(2,sql);
+
     }
     public void select(String tableName){
         String sql="select * from "+tableName;
+        executeUpdateUtil(2,sql);
+
     }
     public void select(ArrayList<String> filed){
         String sql="select "+returnStr(filed)+" "+tableName;
+        executeUpdateUtil(2,sql);
+
     }
     public void select(String tableName,ArrayList<String> filed){
         String sql="select "+returnStr(filed)+" "+tableName;
+        executeUpdateUtil(2,sql);
+
     }
     public void select(String[] filed){
         String sql="select "+returnStr(filed)+" "+tableName;
+        executeUpdateUtil(2,sql);
+
     }
     public void select(String tableName,String[] filed){
         String sql="select "+returnStr(filed)+" "+tableName;
+        executeUpdateUtil(2,sql);
     }
 
-    public void update(ArrayList<String> filed){
+    public void update(String sql,String ... value){
+        //语法太过复杂不写通用架构
+        executeUpdateUtil(2,sql,value);
 
     }
-    public void update(String tableName,ArrayList<String> filed){
 
-    }
-
-    public void update(String[] filed){
-
-    }
-    public void update(String tableName,String[] filed){
-        
-    }
-
-
-    public void insert(){
-
+    public void insert(String sql,String ...value){
+        //插入语句，语法结果复杂，后续处理，demo中
+        executeUpdateUtil(2,sql,value);
     }
 
 

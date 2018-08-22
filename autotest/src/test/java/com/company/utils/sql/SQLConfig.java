@@ -8,9 +8,9 @@ public class SQLConfig {
 	public static final String MysqlUsername=propertiesPublic.getPropertiesValue("MysqlUsername");
 	public static final String MysqlPassword=propertiesPublic.getPropertiesValue("MysqlPassword");
 	public static final String MysqlClass=propertiesPublic.getPropertiesValue("MysqlDriverClass");
-	public static final String MongoUrl=propertiesPublic.getPropertiesValue("MongoUrl");
-	public static final int MongoPort=Integer.parseInt(propertiesPublic.getPropertiesValue("MongoPort"));
-	public static final String MongoUsername=propertiesPublic.getPropertiesValue("MongoUsername");
-	public static final String MongoPassword=propertiesPublic.getPropertiesValue("MongoPassword");
+//	public static final String MongoUrl=propertiesPublic.getPropertiesValue("MongoUrl");
+//	public static final int MongoPort=Integer.parseInt(propertiesPublic.getPropertiesValue("MongoPort"));
+//	public static final String MongoUsername=propertiesPublic.getPropertiesValue("MongoUsername");
+//	public static final String MongoPassword=propertiesPublic.getPropertiesValue("MongoPassword");
 
 }

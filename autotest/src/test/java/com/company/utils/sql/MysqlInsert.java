@@ -6,7 +6,8 @@ import com.company.utils.excel.GetFieldNameIndex;
 import java.sql.Connection;
 import java.util.HashMap;
 
-public class MysqlInsert extends MysqlExecute{
+public class
+MysqlInsert extends MysqlExecute{
 	//后续处理插入状态
 	private GetFieldNameIndex getFieldNameIndex=new GetFieldNameIndex();
 	public MysqlInsert(Connection connection){
