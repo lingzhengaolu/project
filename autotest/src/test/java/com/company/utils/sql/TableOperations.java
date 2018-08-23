@@ -14,6 +14,9 @@ public class TableOperations extends DatabaseOperations{
         if(!isUsed()){ use(DBName);}
         this.tableName=tableName;
     }
+    public void setTableName(String tableName){
+        this.tableName=tableName;
+    }
     public ArrayList<String> getAllTableName(){
         String sql="show tables";
         return returnList(sql);
@@ -121,7 +124,7 @@ public class TableOperations extends DatabaseOperations{
     }
 
     public void insert(String sql,String ...value){
-        //插入语句，语法结果复杂，后续处理，demo中
+        //插入语句，语法结果复杂
         executeUpdateUtil(2,sql,value);
     }
 

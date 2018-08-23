@@ -1,5 +1,7 @@
 package com.company.utils.excel;
 
+import com.company.utils.pub.CloseUtils;
+import com.company.utils.pub.JudgePublic;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -11,19 +13,31 @@ import java.io.*;
 
 //Excel类数据写入效率低，但是数据写入属于实时写入，实时写入，实时保存
 public class Excel {
+	private CloseUtils closeUtils;
 	private String path;
 	private String sheetName;
+	private File file;
 	private FileInputStream fileInputStream=null;
 	private FileOutputStream fileOutputStream=null;
 	private Workbook workbook=null;
 	private Sheet sheet=null;
 	public Excel(String path,String sheetName){
 		this.path=path;
+		if(!JudgePublic.isExcel(path)){
+			System.exit(0);
+		}
 		this.sheetName=sheetName;
+		file=new File(path);
+		closeUtils=new CloseUtils();
 	}
-	private File getExcelFile(){
-		File file=new File(path);
-		return file;
+	public void setPath(String path){
+		if(!JudgePublic.isExcel(path)){
+			System.exit(0);
+		}
+		this.path=path;
+	}
+	public void setSheetName(String sheetName){
+		this.sheetName=sheetName;
 	}
 	public int getColoumNum(){
 		//获取列数
@@ -37,18 +51,15 @@ public class Excel {
 	}
 	private void getSheet(){
 		try{
-			fileInputStream=new FileInputStream(getExcelFile());
+			fileInputStream=new FileInputStream(file);
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
 		try{
 			if(path.endsWith(".xls")){
 				workbook=new HSSFWorkbook(fileInputStream);
-			}else if(path.endsWith(".xlsx")){
-				workbook=new XSSFWorkbook(fileInputStream);
 			}else {
-				System.out.println("文件格式错误，非标准的excel文件！");
-				System.exit(0);
+				workbook=new XSSFWorkbook(fileInputStream);
 			}
 		}catch (IOException e){
 			e.printStackTrace();
@@ -75,39 +86,24 @@ public class Excel {
 				}
 			}
 		}
-		try{
-			workbook.close();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-		try {
-			fileInputStream.close();
-		}catch (IOException e){
-			e.printStackTrace();
-		}
+		closeUtils.closeWorkbook(workbook);
+		closeUtils.closeIO(fileInputStream);
 		return data;
 	}
 	public void updateExcel(int rowIndex,int cellIndex,String value){
 		getSheet();
-		try {
-			fileInputStream.close();//关闭输入流后，开始文件输出流
-		}catch (IOException e){
-			e.printStackTrace();
-		}
+		closeUtils.closeIO(fileInputStream);
 		Row row=sheet.getRow(rowIndex);
 		Cell cell=row.getCell(cellIndex);
 		cell.setCellValue(value);
-		Public();
+		streamOperations();
 	}
 
 	public void createExcel(String[][] value){
 		if(path.endsWith(".xls")){
 			workbook=new HSSFWorkbook();
-		}else if(path.endsWith(".xlsx")){
-			workbook=new XSSFWorkbook();//创建新的工作簿
 		}else {
-			System.out.println("文件格式错误，非标准的excel文件！");
-			System.exit(0);
+			workbook=new XSSFWorkbook();//创建新的工作簿
 		}
 		sheet=workbook.createSheet(sheetName);
 		int rowNum=value.length;
@@ -118,11 +114,11 @@ public class Excel {
 				row.createCell(j).setCellValue(value[i][j]);
 			}
 		}
-		Public();
+		streamOperations();
 	}
-	private void Public(){
+	private void streamOperations(){
 		try {
-			fileOutputStream=new FileOutputStream(getExcelFile());//开始输出流
+			fileOutputStream=new FileOutputStream(file);//开始输出流
 		}catch (FileNotFoundException e){
 			e.printStackTrace();
 		}
@@ -131,20 +127,14 @@ public class Excel {
 		}catch (IOException e){
 			e.printStackTrace();
 		}
+		closeUtils.closeWorkbook(workbook);
 		try{
-			workbook.close();//关闭工作空间
+			if(fileInputStream!=null){
+				fileOutputStream.flush();//提交
+			}
 		}catch (IOException e){
 			e.printStackTrace();
 		}
-		try{
-			fileOutputStream.flush();//提交
-		}catch (IOException e){
-			e.printStackTrace();
-		}
-		try {
-			fileOutputStream.close();
-		}catch (IOException e){
-			e.printStackTrace();//关闭输出流
-		}
+		closeUtils.closeIO(fileOutputStream);
 	}
 }

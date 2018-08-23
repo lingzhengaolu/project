@@ -5,16 +5,17 @@ import java.util.Iterator;
 import java.util.Map;
 
 public class ma {
-    public static void c1(String key,String ... value){
-        System.out.println("c1--------"+value.length);
-        c2(value);
-    }
-    public static void c2(String ... value){
-        System.out.println("c2--------"+value.length);
-        System.out.println(value[0]);
-        System.out.println(value[1]);
-    }
+//    public static void c1(String key,String ... value){
+//        System.out.println("c1--------"+value.length);
+//        c2(value);
+//    }
+//    public static void c2(String ... value){
+//        System.out.println("c2--------"+value.length);
+//        System.out.println(value[0]);
+//        System.out.println(value[1]);
+//    }
     public static void main(String []args) {
+        Object[] objects=new Object[]{1,"2"};
 //        String[] value = new String[]{"a","b","c"};
 //        String str = "";
 //        for (String i : value) {
@@ -32,7 +33,7 @@ public class ma {
 //            System.out.println(entry.getValue());
 //            System.out.println("----------");
 //        }
-        c1("a","1","2");
+//        c1("a","1","2");
 
 
 
